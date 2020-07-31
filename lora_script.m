@@ -3,26 +3,26 @@ clear all; close all;
 %% Parameters and Functions
 rng(1);
 samples = 1e4; % Number of simulations for averaging
-eta=2.8; % path loss exponent
+eta=2.75; % path loss exponent
 fc=868e6;    % Hz - Carrier Frequency
-c=3e8;       % m/s^2 - c
+c=3e8;       % m/s^2 - c (Speed Light)
 lambda=c/fc; % m - Wavelength
-Pt_db=14;     % dBm - Transmission Power
+Pt_db=19;     % dBm - Transmission Power
 Pt = 10.^(Pt_db./10); % mW - Transmission Power
 NF=6;                       % dB - Thermal Noise Power
 BW=125e3;                   % Hz - Signal Bandwidth
 Noise=-174+NF+10*log10(BW); % dBm - Additive White Gaussian Noise (AWGN)
 E_db=[-123 -126 -129 -132 -134.5 -137]; % dBm - Receiver Sensitivity for SF 7 to 12
 E = 10.^(E_db./10); % mW - Receiver Sensitivity for SF 7 to 12
-gamma_db = 1; % dB - SIR Threshold
+gamma_db = 6; % dB - SIR Threshold
 gamma = 10^(gamma_db/10); % linear - SIR Threshold
 p = 1/100; % Duty Cycle
 N_array = [500]; % Average Number of Devices
 
 % Ring model distances
-R = 3000; % m - Network radius
-R_ring = [0 500 1000 1500 2000 2500 3000]; % m - rings radius
-distances_sf = [1 100 200 300 400 500]; % m - points for each SF
+R = 12000; % m - Network radius
+R_ring = [0 2000 4000 6000 8000 10000 12000]; % m - rings radius
+distances_sf = [1 400 800 1200 1600 2000]; % m - points for each SF
 d1 = [distances_sf(2:end)+R_ring(1) distances_sf+R_ring(2) distances_sf+R_ring(3) distances_sf+R_ring(4) distances_sf+R_ring(5) distances_sf+R_ring(6)]; % m - Points to simulate
 
 % Ring Areas
@@ -74,7 +74,7 @@ for N=1:length(N_array) %for different number of devices
 end
 
 
-%% Fig2 Plot
+%% Fig Plot
 figure
 set(gcf, 'Units', 'centimeters')
 set(gcf,'Position',[5 5 2*8.8 1.6*4.95])
