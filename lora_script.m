@@ -21,7 +21,7 @@ N_array = [500]; % Average Number of Devices
 
 % Ring model distances
 R = 12000; % m - Network radius
-R_ring = [0 2000 4000 6000 8000 10000 12000]; % m - rings radius
+R_ring = [0 2000 4000 6000 8000 10000 12000]; % m - rings radius for SF7 to 12
 distances_sf = [1 400 800 1200 1600 2000]; % m - points for each SF
 d1 = [distances_sf(2:end)+R_ring(1) distances_sf+R_ring(2) distances_sf+R_ring(3) distances_sf+R_ring(4) distances_sf+R_ring(5) distances_sf+R_ring(6)]; % m - Points to simulate
 
